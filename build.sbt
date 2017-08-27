@@ -12,8 +12,6 @@ lazy val commonSettings = Seq(
   libraryDependencies ++= Seq(
     "com.typesafe.akka" %% "akka-actor" % "2.5.4",
     "com.typesafe.akka" %% "akka-slf4j" % "2.5.4",
-    //"com.typesafe.akka" %% "akka-typed" % "2.5.4",
-    //"com.typesafe.akka" %% "akka-typed-testkit" % "2.5.4" % "test",
     "junit" % "junit" % "4.11" % "test",
     "ch.qos.logback" % "logback-classic" % "1.1.1",
     "com.typesafe.akka" %% "akka-testkit" % "2.5.4",

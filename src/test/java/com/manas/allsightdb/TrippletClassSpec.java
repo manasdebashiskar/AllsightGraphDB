@@ -39,7 +39,7 @@ public class TrippletClassSpec extends JUnitSuite {
         Tuple<Customer, Age> ccl = new Tuple<Customer, Age>(c, a1);
         ArrayList<Tuple<Customer, Age>> accl = new ArrayList<Tuple<Customer, Age>>();
         accl.add(ccl);
-        ageRelation.insertTripplet(accl);
+        ageRelation.insertTripplets(accl);
         Map<Customer, Age> result = ageRelation.getValuesForKeys(cl);
         assert (result.get(c) == a1);
         List<Age> ag1 = new ArrayList<Age>();

@@ -54,7 +54,7 @@ public class Tripplet<K,V> {
                 .collect(Collectors.toMap(p -> p.getKey(), p -> p.getValue()));
     }
 
-    public void insertTripplet(ArrayList<Tuple<K,V>> tuples) {
+    public void insertTripplets(ArrayList<Tuple<K,V>> tuples) {
         for(Tuple<K,V> tuple: tuples) {
             K key = tuple.getLeft();
             V value = tuple.getRight();
