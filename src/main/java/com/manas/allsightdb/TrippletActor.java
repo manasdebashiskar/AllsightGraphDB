@@ -19,22 +19,17 @@ public class TrippletActor<K, V> extends AbstractActor {
 
     @Override
     public Receive createReceive() {
-        return receiveBuilder()
-                .match(Commands.InsertTripplets.class, s -> {
-                    trippletClass.insertTripplets(s.tuples);
-                })
-                .match(Commands.GetValuesForKeys.class, s -> {
-                    Map<K, V> results = trippletClass.getValuesForKeys(s.keys);
-                    getSender().tell(results, getSender());
-                })
-                .match(GetKeysForValues.class,
-                        s -> {
-                            GetKeysForValuesResult<K, V> result = new GetKeysForValuesResult<K, V>(
-                                    trippletClass.getKeysForValues(s.values));
-                            getSender().tell(result, getSender());
-                        })
-                .matchAny(
-                        o -> System.out.println("received unknown message" + o))
-                .build();
+        return receiveBuilder().match(Commands.InsertTripplets.class, s -> {
+            trippletClass.insertTripplets(s.tuples);
+        }).match(Commands.GetValuesForKeys.class, s -> {
+            GetValuesForKeysResult<K, V> results = new GetValuesForKeysResult<K, V>(
+                    trippletClass.getValuesForKeys(s.keys));
+
+            getSender().tell(results, getSender());
+        }).match(GetKeysForValues.class, s -> {
+            GetKeysForValuesResult<K, V> result = new GetKeysForValuesResult<K, V>(
+                    trippletClass.getKeysForValues(s.values));
+            getSender().tell(result, getSender());
+        }).matchAny(o -> System.out.println("received unknown message" + o)).build();
     }
 }

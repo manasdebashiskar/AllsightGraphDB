@@ -7,6 +7,7 @@ import akka.actor.ActorSystem;
 import akka.actor.Props;
 
 public class GraphDB {
+	//TODO: Obtain the actors via reflection.
     public static class Has_AgeGroupActor extends TrippletActor<Customer, Age> {
         public Has_AgeGroupActor() {
         }
@@ -31,9 +32,14 @@ public class GraphDB {
                 () -> new Has_RegionActor());
         final ActorRef hasAge = system.actorOf(ageProps);
         final ActorRef hasRegion = system.actorOf(regionProps);
+        final String query1 = "return customers belonging to age group";
+        final String query2 = "return region where highest number of customer" +
+        "belonging to age group";
+        final String query3 = "return populous age group in a given region";
         new Thread(() -> {
             try {
                 FileUtils.read(args[1], hasAge, hasRegion);
+                
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
