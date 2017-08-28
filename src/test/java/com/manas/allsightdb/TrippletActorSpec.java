@@ -103,6 +103,7 @@ public class TrippletActorSpec extends JUnitSuite {
     public void CanQueryMultipleActor() {
         new TestKit(system) {
             {
+                final TestKit probe = new TestKit(system);
                 TestObjects to = new TestObjects();
                 String[] ageRange = { "10-20", "20-30", "40-50", "50-60", "60-70" };
                 String[] regionRange = { "AA", "BB", "CC", "DD", "EE" };
@@ -138,8 +139,11 @@ public class TrippletActorSpec extends JUnitSuite {
                     List<Region> cl = new ArrayList<Region>();
                     cl.add(new Region("BB"));
                     cl.add(new Region("CC"));
-                    Commands.GetValuesForKeys<Region> values = new Commands.GetValuesForKeys<Region>(cl);
-                    // regionActor.tell(), arg1);
+                    Commands.GetKeysForValues<Customer, Region> values = new Commands.GetKeysForValues<Customer, Region>(cl);
+                    regionActor.tell(values, probe.getRef());
+                    Commands.GetKeysForValuesResult<Customer, Region> regionsWithCustomer = 
+                            (Commands.GetKeysForValuesResult<Customer, Region>) probe.receiveOne(duration("3 seconds"));
+                    System.out.println(regionsWithCustomer.result);
                     return null;
                 });
             }

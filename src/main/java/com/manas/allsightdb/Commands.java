@@ -28,7 +28,7 @@ public class Commands {
         }
     }
 
-    public static class GetKeysForValues<K, V> implements Command {
+    public static class GetKeysForValues<k,V> implements Command {
         public final List<V> values;
 
         public GetKeysForValues(List<V> values) {
