@@ -1,5 +1,5 @@
 # Introduction
-Architecture of AllsightGraphDB is based off of **actors**. The actor that manages relationship actors is called **graphActor**.
+Architecture of AllsightGraphDB is based off of **actors**. The actor that manages relationship actors is called **graphActor**. The relationship themselves are maintained by **TrippletActor**s.
 
 # How to run
 If you have `sbt` installed on your machine and java 8 you are good to go.
@@ -8,9 +8,12 @@ Steps involved are
 1) git clone https://github.com/manasdebashiskar/AllsightGraphDB.git
 2) cd to AllsightGraphDB
 3) sbt test -- To test the tests written with junit and akka test kit.
-    Test1) Return customer belonging to a certain age group
-    Test2) Retun Region where highest number of customer belonging to age 20-30.
-    Test3) Return populous Age group in a given regions.
+
+    Test1. Return customer belonging to a certain age group
+
+    Test2. Retun Region where highest number of customer belonging to age 20-30.
+
+    Test3. Return populous Age group in a given regions.
 
 ![sbt results] (https://github.com/manasdebashiskar/AllsightGraphDB/blob/master/sbt_test_result.png??raw=true)
 
@@ -31,7 +34,8 @@ Before diving into the internal of this program may be we should talk a little b
 The edge of the graph are otherwise known as relations. Two adjacent nodes are related to each other by diamonds.[2, 4, 5 ,8] and [3,6,7,9] make two such diamonds.
 
 So 4 and 5 are related to each other by 2 and 8. Nodes or Edges themselves don't depict the relation among nodes. The only small-enough entity that depicts relationship is a tripplet.
-**Tripplet** is two nodes connected by a relationship. Both Node and relations have property. Armed with this information let's now discuss about the internals.
+
+A **Tripplet** is two nodes connected by a relationship. Both Node and relations have property. Armed with this information let's now discuss about the internals.
 
 At the heart of internal is a collection class called **Tripplet**.
 Each relationship is maintained by one such collection class. The class provides 3 API's that allows us to do everything that we need to do.
@@ -45,7 +49,7 @@ To give a better "KeysForValues" query we maintain an inverted index map as well
 ### public Map<K, V> getValuesForKeys(List<K> keys)
 -- This API as the name suggests takes a bunch of keys and returns a map of key value pair. Using this API we can ask questions like return the Age groups for customers [C1, C2]. And the answer is in the form of a map Map[C1 -> A1, C2 -> A2].
 
-### public Map<V, Set<K>> getKeysForValues(List<V> values)
+### public Map<V, Set < K >> getKeysForValues(List<V> values)
 -- This API uses the inverted index for efficiency. Client can use this API to ask information like return the list of customers for list of age group. 
 
 # Actor of Tripplet
