@@ -7,11 +7,11 @@ Steps involved are
 
 1) git clone https://github.com/manasdebashiskar/AllsightGraphDB.git
 2) cd to AllsightGraphDB
-3) sbt test -- To test the tests written with junit and akka test kit.
+3) `sbt test` -- To test the tests written with junit and akka test kit.
 
     Test1. Return customer belonging to a certain age group
 
-    Test2. Retun Region where highest number of customer belonging to age 20-30.
+    Test2. Return Region where highest number of customer belonging to age 20-30.
 
     Test3. Return populous Age group in a given regions.
 
@@ -31,7 +31,7 @@ Before diving into the internal of this program may be we should talk a little b
 
 ```
 
-The edge of the graph are otherwise known as relations. Two adjacent nodes are related to each other by diamonds.[2, 4, 5 ,8] and [3,6,7,9] make two such diamonds.
+The edges of the graph are otherwise known as relations. Two adjacent nodes are related to each other by diamonds.[2, 4, 5 ,8] and [3,6,7,9] make two such diamonds.
 
 So 4 and 5 are related to each other by 2 and 8. Nodes or Edges themselves don't depict the relation among nodes. The only small-enough entity that depicts relationship is a tripplet.
 
@@ -60,6 +60,12 @@ As we expect queries to come in different volume and different order, we shall w
     {
             public Has_AgeGroupActor() {
             }
+    }
+```
+Each node can be created by extending the Node abstract class.
+```
+    public class Customer extends Node {
+    
     }
 ```
 This actor implements the receive method and is ready to receive the three API's **Tripplet** class exposes.
