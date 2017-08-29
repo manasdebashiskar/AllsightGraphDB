@@ -1,13 +1,9 @@
 package com.manas.allsightdb;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -22,9 +18,6 @@ import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.testkit.javadsl.TestKit;
 
-import com.manas.allsightdb.Customer;
-import com.manas.allsightdb.Age;
-import com.manas.allsightdb.Region;
 import com.manas.allsightdb.Commands.GetValuesForKeysResult;
 
 public class TrippletActorSpec extends JUnitSuite {
@@ -278,7 +271,6 @@ public class TrippletActorSpec extends JUnitSuite {
                         expectedResult.put(new Customer("2"), new Region("BB"));
                         expectedResult.put(new Customer("7"), new Region("BB"));
                         assert (results.result == expectedResult);
-
                         return null;
                     });
             }
