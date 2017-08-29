@@ -6,19 +6,10 @@ import java.util.ArrayList;
 import java.util.Map;
 import org.junit.*;
 import java.util.Set;
-
+import com.manas.allsightdb.Customer;
+import com.manas.allsightdb.Age;
 public class TrippletClassSpec extends JUnitSuite {
 
-    public class Customer extends Node {
-        String name = "Customer#1";
-    }
-
-    public class Age extends Node {
-        String name = "10-20";
-    }
-    public class Region extends Node {
-        String name = "ONTARIO";
-    }
     public class Has_AgeGroup extends Tripplet<Customer, Age> {
         Has_AgeGroup() {
             super();
@@ -32,8 +23,8 @@ public class TrippletClassSpec extends JUnitSuite {
     @Test
     public void TrippletClassSpec() {
         Has_AgeGroup ageRelation = new Has_AgeGroup();
-        Customer c = new Customer();
-        Age a1 = new Age();
+        Customer c = new Customer("1");
+        Age a1 = new Age("10-20");
         List<Customer> cl = new ArrayList<Customer>();
         cl.add(c);
         Tuple<Customer, Age> ccl = new Tuple<Customer, Age>(c, a1);
