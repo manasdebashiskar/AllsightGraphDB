@@ -8,24 +8,11 @@ Steps involved are
 1) git clone https://github.com/manasdebashiskar/AllsightGraphDB.git
 2) cd to AllsightGraphDB
 3) sbt test -- To test the tests written with junit and akka test kit.
-4) sbt run param1 param2 -- TO run the main program.
-5) `sbt run` should show an all green status just like below.
+    Test1) Return customer belonging to a certain age group
+    Test2) Retun Region where highest number of customer belonging to age 20-30.
+    Test3) Return populous Age group in a given regions.
 
 ![sbt results] (https://github.com/manasdebashiskar/AllsightGraphDB/blob/master/sbt_test_result.png??raw=true)
-
-
-# Design of Actors
-The **graphActor** gets instantiated first and creates the relationship actors like **Has_Age** and  **Has_Region** actors.
-When started the in-memory database gets populated with information from a file that the program gets from command line.
-
-### Input file structure
-It is expected that the input file shall be [customer name| age group | region category]
-### Search structure
-Currently search structure is hard coded.
-User gets to chose from the following sets of queries
-1) Return customer belonging to a certain age group
-2) Retun Region where highest number of customer belonging to age 20-30.
-3) Return populous Age group in a given regions.
 
 # Graph DB internals
 Before diving into the internal of this program may be we should talk a little bit about what counts while dealing with *Graph*.
@@ -126,4 +113,15 @@ public class Commands {
 **graphActor** is the main actor that we create using *actorOf*. It maintains the error kernel. Rest of the actors shall be created from it's context. Hence we can create millions of them if need be. Also, in future it is possible to use Akka clustering and spin of more actors in other machines; hence making it scalable.
 It uses a pinned dispatcher. For cluster mode we can change it to other alternatives.
 
+# Design of Actors
+The **graphActor** gets instantiated first and creates the relationship actors like **Has_Age** and  **Has_Region** actors.
+When started the in-memory database gets populated with information from a file that the program gets from command line.
 
+### Input file structure
+It is expected that the input file shall be [customer name| age group | region category]
+### Search structure
+Currently search structure is hard coded.
+User gets to chose from the following sets of queries
+1) Return customer belonging to a certain age group
+2) Retun Region where highest number of customer belonging to age 20-30.
+3) Return populous Age group in a given regions.
