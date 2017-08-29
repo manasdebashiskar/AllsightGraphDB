@@ -11,7 +11,7 @@ Steps involved are
 4) sbt run param1 param2 -- TO run the main program.
 5) `sbt run` should show an all green status just like below.
 
-![results]: https://github.com/manasdebashiskar/AllsightGraphDB/blob/master/sbt_test_result.png??raw=true "sbt test results"
+![sbt results] (https://github.com/manasdebashiskar/AllsightGraphDB/blob/master/sbt_test_result.png??raw=true)
 
 
 # Design of Actors
