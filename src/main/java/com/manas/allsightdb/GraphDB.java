@@ -58,7 +58,6 @@ public class GraphDB {
         try {
             System.in.read();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         system.terminate();
