@@ -9,6 +9,8 @@ Steps involved are
 2) cd to AllsightGraphDB
 3) sbt test -- To test the tests written with junit and akka test kit.
 4) sbt run param1 param2 -- TO run the main program.
+5) `sbt run` should show an all green status just like below.
+[results]: https://github.com/manasdebashiskar/AllsightGraphDB.git/sbt_test_result.png "sbt test results"
 
 # Design of Actors
 The **graphActor** gets instantiated first and creates the relationship actors like **Has_Age** and  **Has_Region** actors.
@@ -21,7 +23,7 @@ Currently search structure is hard coded.
 User gets to chose from the following sets of queries
 1) Return customer belonging to a certain age group
 2) Retun Region where highest number of customer belonging to age 20-30.
-3) Return populous Age group in a given region.
+3) Return populous Age group in a given regions.
 
 # Graph DB internals
 Before diving into the internal of this program may be we should talk a little bit about what counts while dealing with *Graph*.
