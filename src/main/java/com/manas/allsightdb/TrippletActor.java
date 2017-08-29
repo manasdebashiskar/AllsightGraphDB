@@ -20,7 +20,6 @@ public class TrippletActor<K, V> extends AbstractActor {
     @Override
     public Receive createReceive() {
         return receiveBuilder().match(Commands.InsertTripplets.class, s -> {
-            System.out.println("Populating");
             trippletClass.insertTripplets(s.tuples);
         }).match(Commands.GetValuesForKeys.class, s -> {
             GetValuesForKeysResult<K, V> results = new GetValuesForKeysResult<K, V>(
